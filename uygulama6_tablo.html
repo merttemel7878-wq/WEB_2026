@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Uygulama 6 - Tablo</title>
+<style>
+table {
+    width: 600px;
+    height: 280px;
+    border: 3px double black;
+    padding: 4px;
+    border-spacing: 3px;
+}
+td {
+    border: 2px solid black;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 28px;
+}
+.kirmizi { background-color: red; }
+.mor { background-color: #800080; }
+.sari { background-color: yellow; }
+</style>
+</head>
+<body>
+<table>
+<tr>
+    <td>1</td>
+    <td colspan="4">2</td>
+</tr>
+<tr>
+    <td rowspan="3">3</td>
+    <td class="kirmizi">4</td>
+    <td class="mor">5</td>
+    <td class="kirmizi" colspan="2" rowspan="2">6</td>
+</tr>
+<tr>
+    <td class="kirmizi">7</td>
+    <td class="mor">8</td>
+</tr>
+<tr>
+    <td class="sari" colspan="2">9</td>
+    <td class="mor" colspan="2">10</td>
+</tr>
+</table>
+</body>
+</html>
