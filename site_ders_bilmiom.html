@@ -40,7 +40,7 @@ code,textarea,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,mon
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--signal);outline-offset:2px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 64px 20px 0}
 header.top b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.1rem}
 nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-size:.95rem}
 nav a:hover{color:var(--ink)}
@@ -109,10 +109,12 @@ ol.road p{margin:0;color:var(--muted)}
 
 footer{margin-top:80px;padding:28px 0 40px;border-top:2px solid var(--ink);color:var(--muted);font-size:.93rem}
 /* yukarı dön */
-#top{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:52px;height:52px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:16px;background:var(--signal);color:#10244A;cursor:pointer;box-shadow:4px 4px 0 var(--accent);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s;z-index:20}
-#top.show{opacity:1;visibility:visible;transform:none}
+#top,#bottom{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:52px;height:52px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:16px;background:var(--signal);color:#10244A;cursor:pointer;box-shadow:4px 4px 0 var(--accent);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s;z-index:20}
+#bottom{bottom:auto;top:calc(20px + env(safe-area-inset-top,0px));transform:translateY(-12px)}
+#top.show,#bottom.show{opacity:1;visibility:visible;transform:none}
 #top:hover{transform:translateY(-2px)}
-#top svg{width:22px;height:22px}
+#bottom:hover{transform:translateY(2px)}
+#top svg,#bottom svg{width:22px;height:22px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -197,6 +199,8 @@ footer{margin-top:80px;padding:28px 0 40px;border-top:2px solid var(--ink);color
   </main>
 
   <button id="top" type="button" aria-label="Sayfanın başına dön" title="Yukarı dön"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<button id="bottom" type="button" aria-label="Sayfanın sonuna in" title="Aşağı in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button>
 
 <footer>Bu sayfa web teknolojileriyle, tek bir HTML dosyası olarak hazırlandı. Örnekler eğitim amaçlıdır.</footer>
 </div>
@@ -323,14 +327,16 @@ document.getElementById('clr').onclick = function(){
 };
 update();
 /* ---------- Yukarı dön ---------- */
-var topBtn = document.getElementById('top');
+var topBtn = document.getElementById('top'), botBtn = document.getElementById('bottom');
 function topCheck(){
   var nearEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 320;
   topBtn.classList.toggle('show', nearEnd && window.scrollY > 200);
+  botBtn.classList.toggle('show', !nearEnd);
 }
 window.addEventListener('scroll', topCheck, {passive:true});
 window.addEventListener('resize', topCheck);
 topBtn.onclick = function(){ window.scrollTo({top:0, behavior:'smooth'}); };
+botBtn.onclick = function(){ window.scrollTo({top:document.documentElement.scrollHeight, behavior:'smooth'}); };
 topCheck();
 </script>
 </body>
