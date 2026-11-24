@@ -1,0 +1,25 @@
+p {
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            word-spacing: 4px;
+            word-wrap: break-word;
+            line-height: 10px;
+            text-align: center;
+            text-decoration: underline;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-indent: 20px;
+            text-overflow: ellipsis;
+            text-justify: inter-word;
+        }
+    div{    
+        width: 800px;
+        height: 450px;
+        border: 1px solid black;
+        border-radius: 10px;
+        border-style: dashed;
+        background-color: lightblue;
+    }
